@@ -52,20 +52,13 @@ def select_series_title_with_most_human_characters
   WHERE characters.species = 'human'
   GROUP BY series.title
   ORDER BY COUNT(*) DESC LIMIT 1"
-
-  # "SELECT series.title
-  # FROM series
-  # JOIN books
-  # ON books.series_id = series.id
-  # JOIN character_books
-  # ON character_books.book_id = books.id
-  # JOIN characters
-  # ON character_books.character_id = characters.id
-  # WHERE characers.species = 'human'
-  # GROUP BY series.title
-  # ORDER BY COUNT(*) DESC LIMIT 1"
 end
 
 def select_character_names_and_number_of_books_they_are_in
-  "SELECT characters.name, COUNT(*) as book_count from character_books JOIN characters ON character_books.character_id = characters.id GROUP BY characters.name ORDER BY book_count DESC"
+  "SELECT characters.name,
+  COUNT(*) as book_count from character_books
+  JOIN characters
+  ON character_books.character_id = characters.id
+  GROUP BY characters.name
+  ORDER BY book_count DESC"
 end
